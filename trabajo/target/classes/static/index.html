@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario Usuario</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+
+<h1 class="titulo">Formulario Usuario</h1>
+
+<form id="formInfo">
+
+    <div>
+        <label for="nombreUsuario">Ingresa el Nombre del usuario:</label>
+        <input type="text" id="nombreUsuario" class="input">
+    </div>
+    <br>
+    <div>
+        <label for="contrasena">Ingresa una Contraseña:</label>
+        <input type="text" id="contrasena" class="input">
+    </div>
+
+    <button type="submit" class="boton">Guardar</button>
+    <p id="validacion"></p>
+    <p id="respuesta"></p>
+</form>
+
+<script>
+    const validacion = document.getElementById("validacion");
+    const form = document.getElementById("formInfo");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const nombre = document .getElementById("nombreUsuario").value.trim();
+            const contrasena = document.getElementById("contrasena").value.trim();
+
+            if(nombre === "" || contrasena == ""){
+                validacion.textContent = "Ingresa todos los campos"
+
+            }else {
+                validacion.textContent = " "
+            }
+
+                const datos = {
+                    nombreUsuario: document.getElementById("nombreUsuario").value,
+                    contrasena: document.getElementById("contrasena").value
+                };
+
+                const respuesta = await fetch("/saludo", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(datos)
+                });
+
+
+                const respuestaJSON = await respuesta.json();
+                document.getElementById("respuesta").textContent = respuestaJSON.mensaje
+
+
+
+        });
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+.titulo{
+    color: chocolate;
+    font-size: 35px;
+    font-family: "Bell MT";
+}
+
+.input{
+    border-color: coral;
+    padding: 10px;
+    background-size: 20px;
+    border-radius: 25px;
+}
+
+.boton{
+    background-color: chocolate;
+   padding: 10px;
+    border-radius: 15px;
+}
